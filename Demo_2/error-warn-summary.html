@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Error &amp; Warning Summary | alerts-api</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #202925;
+      --muted: #59665e;
+      --line: #d7dfd9;
+      --error: #a52839;
+      --warn: #795507;
+      --accent: #13664e;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: linear-gradient(180deg, #edf4ef 0, #fafcfb 260px, #fff 600px);
+      font: 16px/1.6 "Source Sans 3", "Segoe UI", sans-serif;
+      letter-spacing: 0;
+    }
+    main { max-width: 1200px; margin: auto; padding: 48px 32px; }
+    header { padding-bottom: 28px; border-bottom: 2px solid var(--ink); }
+    .eyebrow { color: var(--accent); font-weight: 700; margin: 0 0 8px; }
+    h1 { font: 500 36px/1.15 "Charter", "Georgia", serif; margin: 0 0 14px; }
+    h2 { font-size: 21px; line-height: 1.3; margin: 0 0 18px; }
+    p { margin: 0 0 14px; }
+    .meta, .note, footer { color: var(--muted); font-size: 14px; }
+    .meta { margin: 0; }
+    .metrics { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); margin: 28px 0 36px; }
+    .metric { padding: 0 20px; border-left: 1px solid var(--line); }
+    .metric:first-child { padding-left: 0; border-left: 0; }
+    .metric dt { color: var(--muted); font-size: 14px; }
+    .metric dd { font-size: 32px; font-weight: 650; line-height: 1.4; margin: 4px 0 0; }
+    .error-text { color: var(--error); }
+    .warn-text { color: var(--warn); }
+    section { margin-bottom: 36px; }
+    .table-wrap { overflow-x: auto; border-top: 1px solid var(--ink); }
+    table { width: 100%; border-collapse: collapse; text-align: left; font-size: 14px; }
+    caption { text-align: left; padding: 10px 0 14px; color: var(--muted); }
+    th { background: #edf2ef; font-size: 12px; text-transform: uppercase; }
+    th, td { padding: 14px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
+    th:first-child, td:first-child { padding-left: 0; }
+    th:nth-child(2) { width: 38%; }
+    td:nth-child(3), th:nth-child(3) { text-align: center; }
+    code { font: 13px/1.6 "Cascadia Code", "DejaVu Sans Mono", monospace; overflow-wrap: anywhere; }
+    time { white-space: nowrap; font-variant-numeric: tabular-nums; }
+    .level { font-size: 12px; font-weight: 750; }
+    .observations { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; padding: 24px 0; border-block: 1px solid var(--line); }
+    .observations h2 { font-size: 18px; margin-bottom: 10px; }
+    .observations p { margin-bottom: 0; }
+    ol { list-style: none; margin: 0; padding: 0; }
+    li { display: grid; grid-template-columns: 90px 1fr; gap: 16px; padding: 10px 0; border-bottom: 1px solid var(--line); font-size: 14px; }
+    li time { color: var(--muted); }
+    footer { border-top: 1px solid var(--line); padding-top: 18px; }
+    a { color: var(--accent); text-underline-offset: 3px; }
+    @media (max-width: 640px) {
+      main { padding: 28px 18px; }
+      h1 { font-size: 30px; }
+      .metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px 0; }
+      .metric:nth-child(3) { padding-left: 0; border-left: 0; }
+      .observations { grid-template-columns: 1fr; gap: 22px; }
+      table { min-width: 780px; }
+      li { grid-template-columns: 76px 1fr; gap: 10px; }
+    }
+    @media print {
+      body { background: #fff; }
+      main { max-width: none; padding: 0; }
+      .table-wrap { overflow: visible; }
+      tr, .observations { break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <p class="eyebrow">alerts-api / Incident Review</p>
+      <h1>Error &amp; Warning Summary</h1>
+      <p class="meta">10 September 2026 &middot; 02:14:01 to 04:15:44 &middot; Timezone not specified</p>
+    </header>
+
+    <dl class="metrics" aria-label="Log totals">
+      <div class="metric"><dt>Total log entries</dt><dd>20</dd></div>
+      <div class="metric"><dt>Errors</dt><dd class="error-text">6</dd></div>
+      <div class="metric"><dt>Warnings</dt><dd class="warn-text">2</dd></div>
+      <div class="metric"><dt>Distinct error / warning messages</dt><dd>4</dd></div>
+    </dl>
+
+    <section aria-labelledby="messages-title">
+      <h2 id="messages-title">Grouped Messages</h2>
+      <div class="table-wrap" role="region" aria-labelledby="messages-title" tabindex="0">
+        <table>
+          <caption>All times are on 2026-09-10. Alert IDs are normalized to {id}; capacity percentages remain distinct.</caption>
+          <thead>
+            <tr><th scope="col">Level</th><th scope="col">Message</th><th scope="col">Count</th><th scope="col">First seen</th><th scope="col">Last seen</th><th scope="col">Endpoint</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="level error-text">ERROR</span></td>
+              <td>HTTP 500: <code>AttributeError: 'NoneType' object has no attribute 'upper'</code></td>
+              <td>5</td>
+              <td><time datetime="2026-09-10T02:22:18">02:22:18</time></td>
+              <td><time datetime="2026-09-10T04:02:31">04:02:31</time></td>
+              <td><code>POST /alerts/{id}/explain</code></td>
+            </tr>
+            <tr>
+              <td><span class="level warn-text">WARN</span></td>
+              <td>Database connection pool at 82% capacity</td>
+              <td>1</td>
+              <td><time datetime="2026-09-10T02:58:22">02:58:22</time></td>
+              <td><time datetime="2026-09-10T02:58:22">02:58:22</time></td>
+              <td>Not specified</td>
+            </tr>
+            <tr>
+              <td><span class="level error-text">ERROR</span></td>
+              <td>HTTP 404: Alert not found</td>
+              <td>1</td>
+              <td><time datetime="2026-09-10T03:20:03">03:20:03</time></td>
+              <td><time datetime="2026-09-10T03:20:03">03:20:03</time></td>
+              <td><code>GET /alerts/{id}</code></td>
+            </tr>
+            <tr>
+              <td><span class="level warn-text">WARN</span></td>
+              <td>Database connection pool at 91% capacity</td>
+              <td>1</td>
+              <td><time datetime="2026-09-10T03:50:07">03:50:07</time></td>
+              <td><time datetime="2026-09-10T03:50:07">03:50:07</time></td>
+              <td>Not specified</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="observations" aria-label="Key observations">
+      <div>
+        <h2>Recurring Explanation Failures</h2>
+        <p>Alerts 2, 7, 11, 18, and 21 failed when code attempted to call <code>.upper()</code> on <code>None</code>. Each failure was followed one second later by a <code>Retrying request 2/3</code> entry. Retry outcomes are not shown.</p>
+      </div>
+      <div>
+        <h2>Increasing Pool Usage</h2>
+        <p>Reported database connection pool usage increased from 82% to 91%. The log does not establish a causal connection between these warnings and the HTTP 500 failures.</p>
+      </div>
+    </section>
+
+    <section aria-labelledby="timeline-title">
+      <h2 id="timeline-title">Error &amp; Warning Timeline</h2>
+      <ol>
+        <li><time datetime="2026-09-10T02:22:18">02:22:18</time><span><strong class="error-text">ERROR</strong> &middot; Alert 2 explanation returned HTTP 500: <code>None.upper()</code>.</span></li>
+        <li><time datetime="2026-09-10T02:44:09">02:44:09</time><span><strong class="error-text">ERROR</strong> &middot; Alert 7 explanation failed with the same exception.</span></li>
+        <li><time datetime="2026-09-10T02:58:22">02:58:22</time><span><strong class="warn-text">WARN</strong> &middot; Database connection pool at 82% capacity.</span></li>
+        <li><time datetime="2026-09-10T03:12:56">03:12:56</time><span><strong class="error-text">ERROR</strong> &middot; Alert 11 explanation failed with the same exception.</span></li>
+        <li><time datetime="2026-09-10T03:20:03">03:20:03</time><span><strong class="error-text">ERROR</strong> &middot; Alert 14 lookup returned HTTP 404: Alert not found.</span></li>
+        <li><time datetime="2026-09-10T03:41:52">03:41:52</time><span><strong class="error-text">ERROR</strong> &middot; Alert 18 explanation failed with the recurring exception.</span></li>
+        <li><time datetime="2026-09-10T03:50:07">03:50:07</time><span><strong class="warn-text">WARN</strong> &middot; Database connection pool at 91% capacity.</span></li>
+        <li><time datetime="2026-09-10T04:02:31">04:02:31</time><span><strong class="error-text">ERROR</strong> &middot; Alert 21 explanation failed with the recurring exception.</span></li>
+      </ol>
+    </section>
+
+    <footer>Source: <a href="app.log">app.log</a> &middot; 12 INFO entries, 6 ERROR entries, 2 WARN entries. Successful requests continued between failures; recovery is not confirmed by this slice.</footer>
+  </main>
+</body>
+</html>
